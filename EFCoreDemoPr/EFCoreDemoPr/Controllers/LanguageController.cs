@@ -14,6 +14,7 @@ namespace EFCoreDemoPr.Controllers
         {
             this.appDbContext = appDbContext;
         }
+        //Fetch all Details
         [HttpGet("")]
 
         public async Task<IActionResult> GetAllLanguageAsync()
@@ -24,6 +25,7 @@ namespace EFCoreDemoPr.Controllers
 
         }
 
+        //fetch by Id
         [HttpGet("{Id:int}")]
 
         public async Task<IActionResult> GetLanguageByIdAsync([FromRoute] int Id)
@@ -32,6 +34,32 @@ namespace EFCoreDemoPr.Controllers
             if (result == null)
             {
                 return NotFound("Data not found");
+            }
+            return Ok(result);
+        }
+
+
+        //fetch by title
+        [HttpGet("by-Title/{title}")]
+        public async Task<IActionResult> GetLanguageByTitle([FromRoute] string title)
+        {
+            var result = await appDbContext.LanguageTable.FirstOrDefaultAsync(x => x.Title == title);
+            if(result == null)
+            {
+                return NotFound("Data Not Found");
+            }
+            return Ok(result);
+        }
+
+
+        //fetch by descrription 
+        [HttpGet("by-descripton/{description}")]
+        public async Task<IActionResult> GetLanguageByDescription([FromRoute] string description)
+        {
+            var result = await appDbContext.LanguageTable.FirstOrDefaultAsync(x => x.Description == description);
+            if (result == null)
+            {
+                return NotFound("Data Not Found");
             }
             return Ok(result);
         }

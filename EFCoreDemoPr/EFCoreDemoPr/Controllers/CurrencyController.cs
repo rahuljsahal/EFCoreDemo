@@ -15,6 +15,8 @@ namespace EFCoreDemoPr.Controllers
         {
             this.appDbContext = appDbContext;
         }
+
+        //Fetch All Details
         [HttpGet("")]
         //public IActionResult GettAllCurrency()
         //{
@@ -24,18 +26,45 @@ namespace EFCoreDemoPr.Controllers
         //                  select CurrencyType).ToList();
         //    return Ok(result);
         //}
-         public async Task<IActionResult> GettAllCurrency()
+         public async Task<IActionResult> GetAllCurrencyAsync()
         {
             //var result = await appDbContext.CurrencyTable.ToListAsync();
             var result = await (from CurrencyType in appDbContext.CurrencyTable
                                 select CurrencyType).ToListAsync();
             return Ok(result);
         }
+
+        //Details by Currency
         [HttpGet("{currency}")]
         public async Task<IActionResult> GetDetailsByCurrencyAsync([FromRoute] string currency)
         {
             var result = await appDbContext.CurrencyTable.FirstOrDefaultAsync(x=> x.Currency == currency);
             if (result==null)
+            {
+                return NotFound("Data not found");
+            }
+            return Ok(result);
+        }
+
+        //Details by Id
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetDetailsByIdAsync([FromRoute] int id)
+        {
+            var result = await appDbContext.CurrencyTable.FindAsync(id);
+            
+            if (result == null)
+            {
+                return NotFound("Data not found");
+            }
+            return Ok(result);
+        }
+
+        //Details by Description
+        [HttpGet("by-description/{description}")]
+        public async Task<IActionResult> GetDetailsByDescription([FromRoute] string description)
+        {
+            var result = await appDbContext.CurrencyTable.FirstOrDefaultAsync(x => x.Description == description);
+            if (result == null)
             {
                 return NotFound("Data not found");
             }

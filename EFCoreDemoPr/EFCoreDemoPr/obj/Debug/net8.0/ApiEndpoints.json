@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "EFCoreDemoPr.Controllers.CurrencyController",
-    "Method": "GettAllCurrency",
+    "Method": "GetAllCurrencyAsync",
     "RelativePath": "api/currencies",
     "HttpMethod": "GET",
     "IsController": true,
@@ -19,6 +19,38 @@
     "Parameters": [
       {
         "Name": "currency",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EFCoreDemoPr.Controllers.CurrencyController",
+    "Method": "GetDetailsByIdAsync",
+    "RelativePath": "api/currencies/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EFCoreDemoPr.Controllers.CurrencyController",
+    "Method": "GetDetailsByDescription",
+    "RelativePath": "api/currencies/by-description/{description}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "description",
         "Type": "System.String",
         "IsRequired": true
       }
@@ -46,6 +78,38 @@
       {
         "Name": "Id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EFCoreDemoPr.Controllers.LanguageController",
+    "Method": "GetLanguageByDescription",
+    "RelativePath": "api/languages/by-descripton/{description}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "description",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EFCoreDemoPr.Controllers.LanguageController",
+    "Method": "GetLanguageByTitle",
+    "RelativePath": "api/languages/by-Title/{title}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "title",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
